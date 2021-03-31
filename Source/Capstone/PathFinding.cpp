@@ -57,11 +57,11 @@ void APathFinding::Tick(float DeltaTime)
 			FVector currentPos = GetActorLocation();
 			destPos.Z = currentPos.Z;
 
-			
+
 			FVector dir = destPos - currentPos;
 			//dir.X += 10;
 			FQuat dirQuat(dir.Rotation());
-			 rot = FQuat::Slerp(GetActorQuat(), dirQuat, 5 * DeltaTime);
+			rot = FQuat::Slerp(GetActorQuat(), dirQuat, 5 * DeltaTime);
 
 			SetActorRotation(rot);
 
@@ -73,6 +73,10 @@ void APathFinding::Tick(float DeltaTime)
 		}
 		else {
 			// run path finding
+		}
+
+		if (playerInRange == false) {
+			speed = 6;
 		}
 	}
 
@@ -116,7 +120,14 @@ void APathFinding::Patrol(){
 }
 
 void APathFinding::Chase(){
+	speed = 6.0f;
 	isPatroling = false;
+	if (playerInRange == true) {
+		speed = 0;
+	}
+	else {
+		speed = 6;
+	}
 	AStarPathFinding();
 }
 
@@ -143,6 +154,9 @@ void APathFinding::Attack(){
 			
 			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT(" attacking the player %f"), t));
 	}
+	 else if (isRange == false && health >= 0 && playerInRange == false) {
+		 speed = 6;
+	 }
 	
 }
 
