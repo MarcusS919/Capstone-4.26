@@ -13,6 +13,8 @@ APathFinding::APathFinding()
 	PrimaryActorTick.bCanEverTick = true;
 
 	EnemyMesh = CreateDefaultSubobject<UStaticMeshComponent>("Enemy");
+	isAttacking = false;
+	waitTime = 2.0f;
 }
 
 // Called when the game starts or when spawned
@@ -89,9 +91,11 @@ void APathFinding::Tick(float DeltaTime)
 			//LookAtPlayer();
 			Attack();
 			meleeAttack = false;
+			GetWorld()->GetTimerManager().SetTimer(waitTimerHandle, this, &APathFinding::SetAttackFlag, waitTime, false);
 		}
 		else {
 			t -= 1;
+			
 		}
 		
 	}
@@ -137,6 +141,7 @@ void APathFinding::Attack(){
 	
 	if (isRange == true && health >= 0) {
 		if (t == 0) {
+			isAttacking = true;
 			//LookAtPlayer();
 			SetActorRotation(rot);
 			auto Projectile = GetWorld()->SpawnActor<AEnemyRangeAttack>(temp, this->GetActorLocation(), this->GetActorRotation());
@@ -149,7 +154,7 @@ void APathFinding::Attack(){
 		}
 	}
 	 if (isRange == false && health >= 0 && playerInRange == true) {
-		
+		 isAttacking = true;
 			player->UpdateHealth(-15.0f);
 			
 			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT(" attacking the player %f"), t));
@@ -157,7 +162,7 @@ void APathFinding::Attack(){
 	 else if (isRange == false && health >= 0 && playerInRange == false) {
 		 speed = 6;
 	 }
-	
+	 
 }
 
 void APathFinding::countDown()
@@ -174,6 +179,12 @@ void APathFinding::flee(){
 	speed = 15.0f;
 	AStarPathFinding();
 }
+
+void APathFinding::SetAttackFlag()
+{
+	isAttacking = false;
+}
+
 //updaating the health when the enemy is hit
 void APathFinding::UpdateHealth(float healthChange_)
 {

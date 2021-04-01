@@ -136,6 +136,9 @@ public:
 		void Interact();
 
 	UFUNCTION()
+		void ChargeMana();
+
+	UFUNCTION()
 		void UpdateQuestUI(float questStage_);
 
 	UFUNCTION()

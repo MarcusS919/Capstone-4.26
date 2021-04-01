@@ -44,11 +44,6 @@ void AWizardNPC::Tick(float DeltaTime)
 void AWizardNPC::InteractWithMe()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("Interacted with wizard")));
-
-	//UDialogueUserWidget* dialogue = CreateWidget<UDialogueUserWidget>(GetGameInstance(), UDialogueUserWidget::StaticClass());
-	//if (dialogue) {
-	//	dialogue->AddToViewport();
-	//}
 	
 	for (TObjectIterator<ACapstoneCharacter> Itr; Itr; ++Itr)
 	{
@@ -69,7 +64,8 @@ void AWizardNPC::InteractWithMe()
 			if (actorClass->GetQuestUIStage() == 2.0f) {
 				dialogueWIdget->SetVisibility(true);
 				GetWorld()->GetTimerManager().SetTimer(waitTimerHandle, this, &AWizardNPC::HideDialogue, waitTime, false);
-				//actorClass->UpdateQuestUI(1.0f);
+				actorClass->UpdateQuestUI(1.0f);
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("changed to quest 4")));
 			}
 			actorClass = nullptr;
 		}

@@ -95,6 +95,7 @@ void ACapstoneCharacter::SetupPlayerInputComponent(class UInputComponent* Player
 	//Player Action
 	PlayerInputComponent->BindAction("Attack", IE_Pressed, this, &ACapstoneCharacter::Attack);
 	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &ACapstoneCharacter::Interact);
+	PlayerInputComponent->BindAction("Charge", IE_Repeat, this, &ACapstoneCharacter::ChargeMana);
 }
 
 void ACapstoneCharacter::BeginPlay()
@@ -254,6 +255,13 @@ void ACapstoneCharacter::Attack()
 void ACapstoneCharacter::Interact() {
 	if (interface) {
 		interface->InteractWithMe();
+	}
+}
+
+void ACapstoneCharacter::ChargeMana() {
+	if (Controller != NULL)
+	{
+		UpdateMana(2.0f);
 	}
 }
 

@@ -45,7 +45,10 @@ public:
 	UPROPERTY(EditAnywhere) float projectileSpeed;
 	UPROPERTY(EditAnywhere) FVector destPos;
 	
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite) bool isAttacking;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float waitTime;
+	FTimerHandle waitTimerHandle;
 
 	void Patrol();
 	void Chase();
@@ -53,6 +56,7 @@ public:
 	void countDown();
 	void flee();
 	bool isFleeing;
+	void SetAttackFlag();
 	float speed = 6.0f;
 	FQuat rot;
 	UFUNCTION()
