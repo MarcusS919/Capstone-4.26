@@ -100,6 +100,11 @@ void APathFinding::Tick(float DeltaTime)
 		
 	}
 	
+	if (t >= 100 && distance > 300) {
+		isAttacking = false;
+	}
+
+
 }
 
 void APathFinding::LookAtPlayer()
@@ -138,30 +143,50 @@ void APathFinding::Chase(){
 void APathFinding::Attack(){
 	speed = 0;
 	AStarPathFinding();
-	
+	bool dontPlay = false;
 	if (isRange == true && health >= 0) {
 		if (t == 0) {
 			isAttacking = true;
 			//LookAtPlayer();
 			SetActorRotation(rot);
 			auto Projectile = GetWorld()->SpawnActor<AEnemyRangeAttack>(temp, this->GetActorLocation(), this->GetActorRotation());
-			
+
 			Projectile->ShootProjectile(projectileSpeed);
+
 			t += 50;
+		}
+		else if (t == 30) {
+			isAttacking = false;
+			t -= 1;
 		}
 		else {
 			t -= 1;
-		}
-	}
-	 if (isRange == false && health >= 0 && playerInRange == true) {
-		 isAttacking = true;
-			player->UpdateHealth(-15.0f);
 			
+		}
+		
+	}
+	 if (isRange == false && health >= 0 /*&& playerInRange == true*/) {
+		 speed = 0;
+
+		 if (t == 0) {
+			 isAttacking = true;
+			 player->UpdateHealth(-15.0f);
+			 t += 150;
+			 dontPlay = true;
+		 }
+		 else if (t == 100) {
+			 isAttacking = false;
+			 t -= 1;
+		 }
+		 else {
+			 t -= 1;
+		 }
+		
 			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT(" attacking the player %f"), t));
 	}
-	 else if (isRange == false && health >= 0 && playerInRange == false) {
+	 /*else if (isRange == false && health >= 0 && playerInRange == false) {
 		 speed = 6;
-	 }
+	 }*/
 	 
 }
 
@@ -213,16 +238,19 @@ void APathFinding::OnOverlap(AActor* MyOverlappedActor, AActor* OtherActor)
 
 		class ACapstoneCharacter* player = Cast<ACapstoneCharacter>(OtherActor);
 		
-		if (player)
-		{
-			//player->UpdateHealth(-10.0f);
-			playerInRange = true;
-			t = 100;
-			meleeAttack = true;
-		}
-		if(!player){
-			playerInRange = false;
-		}
+		//if (player)
+		//{
+		//	//player->UpdateHealth(-10.0f);
+		//	playerInRange = true;
+		//	t = 100;
+		//	meleeAttack = true;
+		//	speed = 0;
+		//}
+		//if(!player){
+		//	playerInRange = false;
+		//	speed = 6;
+		//	
+		//}
 
 		
 

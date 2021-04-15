@@ -27,14 +27,8 @@ void AEnemyRangeAttack::Tick(float DeltaTime)
 {
 
 	Super::Tick(DeltaTime);
-	/*
-	ActorLocation = GetActorLocation();
-	int speed = 10;
-	ActorLocation.X -= speed;
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("health: %f"), destPos.X));
-	SetActorLocation(ActorLocation, true);*/
 	
-
+	
 
 	if (t == 0) {
 		Destroy();

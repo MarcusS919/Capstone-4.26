@@ -53,9 +53,10 @@ void AAIStateMachine::Tick(float DeltaTime)
 			currentState = ATTACK;
 		}
 		//for when the melee Ai can go to attack state
-		/*if (distance < 300 && Ai->isRange == false) {
-			currentState = ATTACK;
-		}*/
+	 if (distance < 300 && Ai->isRange == false) {
+			Ai->Attack();
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT(" attacking the player %f")));
+		}
 
 		if (distance < 300 && Ai->isRange == true) {
 			currentState = FLEE;
@@ -65,6 +66,7 @@ void AAIStateMachine::Tick(float DeltaTime)
 	case ATTACK:
 		
 		Ai->Attack();
+		
 		//checking if the player has escaped or is too close
 		if (distance > 800) {
 			currentState = PATROL;
