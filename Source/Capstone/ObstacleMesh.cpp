@@ -23,7 +23,7 @@ void AObstacleMesh::BeginPlay()
 	UBoxComponent* Component = Cast<UBoxComponent>(GetComponentByClass(UBoxComponent::StaticClass()));
 
 	if (Component) {
-		//UE_LOG(LogTemp, Warning, TEXT("Component Name : %s"), *Component->GetName());
+		
 		
 		Component->OnComponentBeginOverlap.AddDynamic(this, &AObstacleMesh::OnOverlapBegin);
 		Component->OnComponentEndOverlap.AddDynamic(this, &AObstacleMesh::OnOverLapEnd);
@@ -39,7 +39,7 @@ void AObstacleMesh::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	UBoxComponent* Component = Cast<UBoxComponent>(GetComponentByClass(UBoxComponent::StaticClass()));
 	if (Component) {
-		//UE_LOG(LogTemp, Warning, TEXT("Component Name : %s"), *Component->GetName());
+	
 
 		Component->OnComponentBeginOverlap.AddDynamic(this, &AObstacleMesh::OnOverlapBegin);
 		Component->OnComponentEndOverlap.AddDynamic(this, &AObstacleMesh::OnOverLapEnd);
@@ -65,8 +65,7 @@ void AObstacleMesh::OnOverlapBegin(
 
 		
 
-	//	UE_LOG(LogTemp, Warning, TEXT("Obstacle Besin Collision : %d"), grid_->checkWall);
-		//UE_LOG(LogTemp, Warning, TEXT("%s : (%f, %f)"), *OverlappedComp->GetName(), hitPosition.X, hitPosition.Y);
+
 	}
 
 }

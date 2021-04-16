@@ -36,7 +36,7 @@ void AEnemyRangeAttack::Tick(float DeltaTime)
 	}
 	else {
 		t = t - 1;
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("me: %f"), t));
+
 	}
 
 	
