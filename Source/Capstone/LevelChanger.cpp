@@ -40,9 +40,9 @@ void ALevelChanger::OnOverlap(AActor* MyOverlappedActor, AActor* OtherActor)
 				{
 					ACapstoneCharacter* actorClass = *Itr;
 					if (actorClass->GetQuestUIStage() == questCompleteStage) {
-						GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("quest changed||quest stage: %f"), actorClass->GetQuestUIStage()));
+						//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("quest changed||quest stage: %f"), actorClass->GetQuestUIStage()));
 						FName levelName = FName(*levelString);
-						GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("loading new level")));
+						//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("loading new level")));
 						float temp;
 						temp = actorClass->GetQuestUIStage();
 						actorClass->UpdateQuestUI(-temp);

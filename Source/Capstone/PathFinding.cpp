@@ -182,7 +182,7 @@ void APathFinding::Attack(){
 			 t -= 1;
 		 }
 		
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT(" attacking the player %f"), t));
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT(" attacking the player %f"), t));
 	}
 	 /*else if (isRange == false && health >= 0 && playerInRange == false) {
 		 speed = 6;
@@ -194,7 +194,7 @@ void APathFinding::countDown()
 {
 	t -= 1;
 	if (t == 0) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT(" attacking the player %f")));
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT(" attacking the player %f")));
 		Attack();
 	}
 }
@@ -215,7 +215,7 @@ void APathFinding::UpdateHealth(float healthChange_)
 {
 	health = FMath::Clamp(health += healthChange_, 0.0f, maxHealth);
 	healthPercent = health / maxHealth;
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("health: %f"), healthPercent));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("health: %f"), healthPercent));
 	if (health <= 0.0f){
 		for (TObjectIterator<ACapstoneCharacter> Itr; Itr; ++Itr)
 		{

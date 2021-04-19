@@ -58,7 +58,7 @@ void AEnemyRangeAttack::OnOverlap(AActor* MyOverlappedActor, AActor* OtherActor)
 		}
 
 		if (Wall) {
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT(" Ai hit wall %f"), t));
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT(" Ai hit wall %f"), t));
 			Destroy();
 		}
 
@@ -72,7 +72,7 @@ void AEnemyRangeAttack::ShootProjectile(float Speed)
 {
 	ProjectileMovement->ProjectileGravityScale = 0.0f;
 	ProjectileMovement->SetVelocityInLocalSpace(FVector::ForwardVector * Speed);
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("shooting: %f"), Speed));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("shooting: %f"), Speed));
 }
 
 void AEnemyRangeAttack::DestoryObj()

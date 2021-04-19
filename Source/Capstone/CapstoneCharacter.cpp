@@ -181,14 +181,14 @@ void ACapstoneCharacter::UpdateMana(float manaChange_)
 {
 	mana = FMath::Clamp(mana += manaChange_, 0.0f, maxMana);
 	manaPercent = mana / maxMana;
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("mana: %f"), manaPercent));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("mana: %f"), manaPercent));
 }
 
 void ACapstoneCharacter::UpdateHealth(float healthChange_)
 {
 	health = FMath::Clamp(health += healthChange_, 0.0f, maxHealth);
 	healthPercent = health / maxHealth;
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("health: %f"), healthPercent));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("health: %f"), healthPercent));
 
 	if (healthPercent <= 0.0f) {
 		Death();
@@ -203,17 +203,17 @@ float ACapstoneCharacter::GetQuestUIStage()
 void ACapstoneCharacter::UpdateQuestUI(float questStage_)
 {
 	questStage += questStage_;
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("quest changed||quest stage: %f"), questStage));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("quest changed||quest stage: %f"), questStage));
 }
 
 void ACapstoneCharacter::UpdateKills(float killCount_)
 {
 	killCount += killCount_;
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("kills updated")));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("kills updated")));
 
 	if (killCount == maxKillCount && questStage == 1.0f) {
 		UpdateQuestUI(1.0f);
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("quest: %f"), questStage));
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("quest: %f"), questStage));
 	}
 }
 
@@ -230,7 +230,7 @@ float ACapstoneCharacter::GetMaxKills()
 void ACapstoneCharacter::Death()
 {
 	if (healthPercent <= 0.0f) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("GameOver")));
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("GameOver")));
 		UGameplayStatics::OpenLevel(GetWorld(), "GameOverMenuLevel");
 	}
 }
@@ -247,7 +247,7 @@ void ACapstoneCharacter::Attack()
 			Projectile->ShootProjectile(projectileSpeed);
 		}
 		else {
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("Not enough mana")));
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("Not enough mana")));
 		}
 	}
 }

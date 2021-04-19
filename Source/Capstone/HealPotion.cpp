@@ -38,7 +38,7 @@ void AHealPotion::Tick(float DeltaTime)
 
 void AHealPotion::InteractWithMe()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("Interacted with heal potion")));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("Interacted with heal potion")));
 	
 	//myCharacter = GetWorld()->GetFirstPlayerController();
 	//myCharacter->UpdateHealth(-20.0f);
